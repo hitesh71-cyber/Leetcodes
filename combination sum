@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int sum=0;
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        vector<int> n;
+        helper(0,ans,candidates,target,n);
+        return ans;
+    }
+    void helper(int idx,vector<vector<int>> &ans,vector<int> &candidates,int target,vector<int> &n){
+        if(sum==target){
+        ans.push_back(n);
+        return;}
+        if(sum>target || idx>=candidates.size())
+        return;
+        n.push_back(candidates[idx]);
+        sum+=candidates[idx];
+        helper(idx,ans,candidates,target,n);
+        n.pop_back();
+        sum-=candidates[idx];
+        
+        helper(idx+1,ans,candidates,target,n);
+
+    }
+};
