@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> ans;
+        vector<int> a;
+        helper(1,ans,a,k,n);
+        return ans;
+    }
+    void helper(int val, vector<vector<int>> &ans, vector<int> &a, int k, int n ){
+        if(k==0 && n==0){
+        ans.push_back(a);
+        return;}
+        for(int i=val;i<=9;i++){
+            a.push_back(i);
+            helper(i+1,ans,a,k-1,n-i);
+            a.pop_back();
+        }
+    }
+};
